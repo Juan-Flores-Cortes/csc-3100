@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "dev": "npm run dev --workspace=react-frontend"
+    
   },
   "dependencies": {
     "react": "^19.2.8",
