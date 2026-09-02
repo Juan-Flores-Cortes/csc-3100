@@ -11,8 +11,8 @@ function Form() {
   if (name === "job") setPerson({ name: person["name"], job: value });
   else setPerson({ name: value, job: person["job"] });
   }
-}
-return (
+ 
+  return (
   <form>
     <label htmlFor="name">Name</label>
     <input
@@ -31,7 +31,8 @@ return (
       onChange={handleChange}
     />
   </form>
-);
+ );
+}
 
 
 

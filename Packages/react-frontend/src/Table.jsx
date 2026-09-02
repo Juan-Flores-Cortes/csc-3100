@@ -1,4 +1,6 @@
 // src/Table.jsx
+import React from "react";
+
 function TableHeader() {
   return (
     <thead>
@@ -21,13 +23,12 @@ function TableBody(props) {
         </td>
       </tr>
     );
-   }
-  );
+   });
   return (
       <tbody>
         {rows}
        </tbody>
-   );
+  );
 }
 
 function Table(props) {
