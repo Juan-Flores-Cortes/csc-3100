@@ -7,6 +7,10 @@ const port = 8000;
 const findUserByName = (name)=> {
   return users ["users_list"].filter((user) => user ["name"] ===name);
 }
+const addUser = (user) => {
+  users["users_list"].push(user);
+  return user;
+};
 
 
 const users = {
@@ -44,6 +48,12 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json("Hello World");
+});
+
+app.post("/users", (req, res) => {
+  const userToAdd = req.body;
+  addUser(userToAdd);
+  res.send();
 });
 
 app.get("/users", (req, res) => {
