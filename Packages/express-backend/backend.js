@@ -66,6 +66,17 @@ app.get("/users", (req, res) => {
     res.send(users);
   }
 });
+const removeUserById = (id) => {
+  users["users_list"] = users["users_list"].filter(
+    (user) => user.id !== id
+  );
+};
+
+app.delete("/users/:id", (req, res) => {
+  const idToDelete = req.params.id;
+  removeUserById(idToDelete);
+  res.send();
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
