@@ -48,7 +48,7 @@ app.get("/", (req, res) => {
 
 app.get("/users", (req, res) => {
   const name = req.query.name;
-  if (name != indefined){
+  if (name != undefined){
     let result = findUserByName(name);
     result = { users_list: result};
     res.send(result);
