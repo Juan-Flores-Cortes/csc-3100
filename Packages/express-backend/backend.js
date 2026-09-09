@@ -4,6 +4,9 @@ import express from "express";
 const app = express();
 const port = 8000;
 
+const findUserByName = (name)=> {
+  return users ["users_list"].filter((user) => user ["name"] ===name);
+}
 
 
 const users = {
@@ -44,7 +47,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", (req, res) => {
-  res.send(users);
+  const name = req.query.name;
+  if (name != indefined){
+    let result = findUserByName(name);
+    result = { users_list: result};
+    res.send(result);
+  } else {
+    res.send(users);
+  }
 });
 
 app.listen(port, () => {
