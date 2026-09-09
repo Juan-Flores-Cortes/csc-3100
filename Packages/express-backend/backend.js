@@ -3,6 +3,17 @@ import express from "express";
 
 const app = express();
 const port = 8000;
+
+app.use(express.json());
+
+app.get("/users", (req, res) => {
+  res.send(users);
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+
 const users = {
   users_list: [
     {
@@ -34,12 +45,3 @@ const users = {
 };
 
 
-app.use(express.json());
-
-app.get("/users", (req, res) => {
-  res.send(users);
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
