@@ -10,9 +10,14 @@ function MyApp() {
   postUser(person)
     .then((res) => {
     if (res.status === 201) {
+        return res.json();
+      }
+    })
+    .then((newUser) => {
+    if (newUser) {
         setCharacters((currentCharacters) => [
           ...currentCharacters,
-          person,
+          newUser,
         ]);
       }
     })

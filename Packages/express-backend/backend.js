@@ -13,6 +13,11 @@ const findUserById = (id) =>
 const findUserByName = (name)=> {
   return users ["users_list"].filter((user) => user ["name"] ===name);
 }
+
+const generateId = () => {
+  return Math.random().toString(36).substring(2, 8);
+};
+
 const addUser = (user) => {
   users["users_list"].push(user);
   return user;
@@ -59,6 +64,8 @@ app.get("/", (req, res) => {
 
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
+  
+  userToAdd.id = generateId();
 
   addUser(userToAdd);
 
