@@ -67,9 +67,9 @@ app.post("/users", (req, res) => {
   
   userToAdd.id = generateId();
 
-  addUser(userToAdd);
+  const newUser = addUser(userToAdd);
 
-  res.status(201).json(userToAdd);
+  res.status(201).send(newUser);
 });
 
 app.get("/users/:id", (req, res) => {
@@ -100,8 +100,15 @@ const removeUserById = (id) => {
 
 app.delete("/users/:id", (req, res) => {
   const idToDelete = req.params.id;
-  removeUserById(idToDelete);
-  res.send();
+
+  const userToDelete = findUserById(idToDelete);
+
+  if (userToDelete === undefined){
+    res.status(404).send("Resource not found");
+  } else {
+    removeUserById(idToDelete);
+    res.status(204).send();
+  }
 });
 
 app.listen(port, () => {

@@ -25,7 +25,11 @@ function MyApp() {
       console.log(error);
     });
 }
-
+function deleteUser(id){
+  return fetch (`http://localhost:8000/users/${id}`,{
+    method: "DELETE",
+  });
+}
 function fetchUsers() {
   const promise = fetch("http://localhost:8000/users");
   return promise;
@@ -51,23 +55,30 @@ useEffect(() => {
     });
 }, []);
 
-function removeOneCharacter(index) {
-    const updated = characters.filter((character, i) => {
-      return i !== index;
+function removeOneCharacter(id) {
+  deleteUser(id)
+    .then((res) => {
+      if (res.status === 204) {
+        const updated = characters.filter((character) => {
+          return character.id !== id;
+        });
+
+        setCharacters(updated);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
     });
-
-    setCharacters(updated);
-  }
-
-  return (
-    <div className="container">
-      <Table
-        characterData={characters}
-        removeCharacter={removeOneCharacter}
-      />
-      <Form  handleSubmit={updateList}  />
-    </div>
-  );
+}
+return (
+  <div className="container">
+    <Table
+      characterData={characters}
+      removeCharacter={removeOneCharacter}
+    />
+    <Form handleSubmit={updateList} />
+  </div>
+);
 }
 
 export default MyApp;
