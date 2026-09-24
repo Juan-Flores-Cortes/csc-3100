@@ -49,7 +49,7 @@ function getUsers(name, job) {
     return userModel.find({ name: name, job: job });
   }
 }
-
+//helper Functions 
 function findUserById(id) {
   return userModel.findById(id);
 }
