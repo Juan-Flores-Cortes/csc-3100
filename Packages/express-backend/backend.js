@@ -2,10 +2,10 @@
 import cors from "cors";
 import express from "express";
 import userService from "./services/user-service.js";
-import dotev from "dotenv";
+import dotenv from "dotenv";
 import mongoose from "mongoose";
 
-dotev.config();
+dotenv.config();
 
 const {MONGO_CONNECTION_STRING} = process.env;
 
